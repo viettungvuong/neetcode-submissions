@@ -1,0 +1,20 @@
+class Solution:
+    def maxArea(self, heights: List[int]) -> int:
+        n = len(heights)
+
+        l = 0
+        r = n - 1
+
+        res = 0
+
+        while l < r:
+            amount = (r - l) * min(heights[l], heights[r])
+            res = max(res, amount)
+
+            if heights[l]<heights[r]: # because the height is determined by the shorter bar, moving to the taller bar does not make any change
+                l += 1
+            else:
+                r -= 1
+        
+        return res
+                
